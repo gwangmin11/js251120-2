@@ -118,17 +118,25 @@ document.addEventListener('DOMContentLoaded', () => {
         e.preventDefault();
         const name = document.getElementById('name').value;
         const height = parseFloat(document.getElementById('height').value);
+        const gender = document.querySelector('input[name="gender"]:checked').value;
         
         if (!name || isNaN(height)) {
             resultDiv.innerHTML = `<p>유효한 값을 입력해주세요.</p>`;
             return;
         }
 
-        // Simplified percentile calculation
-        // Based on a generic adult population model (not medically accurate)
-        // Mean (μ) = 170cm, Standard Deviation (σ) = 10cm
-        const meanHeight = 170;
-        const stdDev = 10;
+        // Simplified percentile calculation based on gender
+        // These are just approximate values for demonstration
+        let meanHeight;
+        let stdDev;
+
+        if (gender === 'male') {
+            meanHeight = 176; // Mean height for males in cm
+            stdDev = 7;       // Standard deviation for males
+        } else { // female
+            meanHeight = 163; // Mean height for females in cm
+            stdDev = 6.5;     // Standard deviation for females
+        }
 
         const zScore = (height - meanHeight) / stdDev;
 
@@ -153,6 +161,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentile = standardNormalCdf(zScore) * 100;
         const topPercentile = 100 - percentile;
 
-        resultDiv.innerHTML = `<p>${name}님, 키 ${height}cm는 상위 ${topPercentile.toFixed(2)}%에 속합니다.</p>`;
+        resultDiv.innerHTML = `<p>${name}님, 키 ${height}cm는 동일 성별 내에서 상위 ${topPercentile.toFixed(2)}%에 속합니다.</p>`;
     });
 });

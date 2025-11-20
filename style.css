@@ -152,3 +152,18 @@ body.dark-mode #result {
     margin: 0;
     font-size: 1.1em;
 }
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.radio-group input[type="radio"] {
+    width: auto;
+}
+
+.radio-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+}

@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const percentile = standardNormalCdf(zScore) * 100;
         const topPercentile = 100 - percentile;
 
-        resultDiv.innerHTML = `<p>${name}님, 키 ${height}cm는 동일 성별 내에서 상위 ${topPercentile.toFixed(2)}%에 속합니다.</p>`;
+        const genderText = gender === 'male' ? '남성' : '여성';
+        resultDiv.innerHTML = `<p>${name}님, 키 ${height}cm는 ${genderText} 기준 상위 ${topPercentile.toFixed(2)}%에 속합니다.</p>`;
     });
 });
